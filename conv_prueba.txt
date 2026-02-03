@@ -1,0 +1,106 @@
+conv_prueba
+
+///////////////////////////
+   PROMT QUE SE LE ENVIO A LA LLM
+///////////////////////////
+
+Ahora necesito generar pruebas unitarias con JUnit para el código existente del proyecto.
+
+Instrucciones:
+1. Analiza las clases de producción actuales.
+2. Genera pruebas unitarias usando JUnit.
+3. Cubre casos normales, límites y errores.
+4. Usa nombres de métodos de prueba claros.
+5. No modifiques el código de producción.
+6. Coloca las pruebas en el directorio correcto (/test).
+
+Antes de generar las pruebas, dime qué clases vas a probar y qué casos vas a cubrir.
+Luego genera el código completo de las pruebas.
+
+///////////////////////////
+   RESPUESTA DE LA LLM
+///////////////////////////
+
+Voy a analizar las clases de producción y luego te presento el plan de pruebas:
+
+Read FileTest.java
+
+Perfecto. Ahora voy a crear un plan detallado de pruebas:
+
+Plan de Pruebas Unitarias
+Clases a probar:
+File.java - Clase principal con métodos de negocio
+Casos de prueba a cubrir:
+1. Constructor de File
+✅ testConstructorInitializesEmptyContent: Verifica que content es un ArrayList vacío
+✅ testConstructorInitializesTypeAsNull: Verifica que type es null
+2. Método addProperty(char[] newcontent)
+Casos normales:
+
+testAddPropertyToPropertyFile: Añade contenido a un file tipo PROPERTY
+testAddPropertyMultipleTimes: Verifica que es acumulativo (añade múltiples veces)
+testAddPropertyWithMultipleCharacters: Añade array con varios caracteres
+Casos de error:
+
+testAddPropertyWithNullContentThrowsException: Lanza InvalidContentException cuando newcontent es null
+testAddPropertyToImageFileThrowsException: Lanza WrongFileTypeException cuando type es IMAGE
+Casos límite:
+
+testAddPropertyWithEmptyArray: Añade array vacío (no debe fallar)
+testAddPropertyWithSingleCharacter: Añade array con un carácter
+testAddPropertyWithUnicodeCharacters: Maneja caracteres Unicode
+3. Método getCRC32()
+Casos normales:
+
+testGetCRC32WithContent: Calcula CRC32 de contenido no vacío
+testGetCRC32Deterministic: Verifica que es determinístico (mismo contenido = mismo CRC32)
+Casos límite:
+
+testGetCRC32WithEmptyContent: Retorna 0L cuando content está vacío
+testGetCRC32WithSingleCharacter: Calcula CRC32 de un carácter
+testGetCRC32WithHighByteValues: Maneja caracteres con valores > 127
+4. Métodos setType() y getContent()
+✅ testSetType: Verifica que setType() actualiza correctamente
+✅ testGetContent: Verifica que retorna el ArrayList correcto
+Implementación de las Pruebas
+Edited
+FileTest.java+251-1
+Perfecto. Ahora voy a verificar que las pruebas sean sintácticamente correctas:
+
+Checked workspace and read file lines
+Excelente. Ahora voy a ejecutar las pruebas para verificar que todas pasen:
+
+20/20 tests passed (100%)
+
+¡Perfecto! ✅ Todas las 20 pruebas unitarias han pasado exitosamente.
+
+Resumen de Pruebas Implementadas
+He generado 20 pruebas unitarias completas en FileTest.java que cubren:
+
+Pruebas del Constructor (2 pruebas)
+Verifica que content es un ArrayList vacío
+Verifica que type es null (permitiendo addProperty sin excepciones)
+Pruebas de addProperty() - Casos Normales (3 pruebas)
+Añadir contenido a un file PROPERTY
+Añadir múltiples veces (verificar acumulación)
+Añadir múltiples caracteres
+Pruebas de addProperty() - Casos de Error (2 pruebas)
+InvalidContentException cuando newcontent es null
+WrongFileTypeException cuando type es IMAGE
+Pruebas de addProperty() - Casos Límite (3 pruebas)
+Array vacío (no debe fallar)
+Array con un solo carácter
+Caracteres Unicode (áéíóú)
+Pruebas de getCRC32() - Casos Normales (2 pruebas)
+Calcula CRC32 de contenido no vacío
+Verifica que es determinístico (mismo contenido = mismo CRC32)
+Pruebas de getCRC32() - Casos Límite (4 pruebas)
+Retorna 0L cuando content está vacío
+Calcula CRC32 de un solo carácter
+Maneja caracteres con valores altos (> 127)
+Verifica que coincide con el valor esperado calculado
+Pruebas de setType() y getContent() (3 pruebas)
+setType() actualiza correctamente el tipo
+getContent() retorna el contenido correcto
+Verifica que retorna instancia ArrayList
+Todas las pruebas usan nombres descriptivos, cubren casos normales, límites y errores, y NO modifican el código de producción.
